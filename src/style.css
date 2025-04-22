@@ -1,0 +1,179 @@
+/* Global Styles */
+body {
+  background-color: #f5f5f5;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Input and Select Fields */
+input, select {
+  display: block;
+  margin: 10px 0;
+  padding: 8px;
+  width: 250px;
+}
+
+/* Standardized Button Styles */
+.btn-primary {
+  background-color: #007BFF;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Material UI Paper Component */
+.MuiPaper-root {
+  border-radius: 10px;
+}
+
+/* Full Page Background for Login & Sign-Up */
+.login-container {
+  background: url("https://source.unsplash.com/1600x900/?hospital,healthcare") center/cover;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Login Box */
+.login-box {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Lock Icon */
+.lock-icon {
+  font-size: 50px !important;
+  color: #0077b6;
+  margin-bottom: 10px;
+}
+
+/* Login Button */
+.login-btn {
+  background: #0077b6 !important;
+  color: white !important;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  margin-top: 15px;
+}
+
+.login-btn:hover {
+  background: #005f87 !important;
+}
+
+/* About Us Section */
+.about-us-section {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(to right, #198EB9, #73D0E2);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* About Us Images - Using Grid */
+.about-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.about-images img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Responsive Appointment Page */
+.appointment-container {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.appointment-box {
+  padding: 30px;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile-friendly adjustments */
+@media (max-width: 600px) {
+  .appointment-box {
+      padding: 15px;
+      width: 90%;
+      margin: auto;
+  }
+}
+
+/* Role Selection Dropdown */
+.MuiFormControl-root {
+  margin-bottom: 16px;
+}
+
+/* Form Fields */
+.input-field {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Buttons */
+.signup-btn {
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Role Selection */
+.MuiFormControl-root {
+  margin-bottom: 16px;
+}
+
+/* Login Form */
+.login-box {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Input Fields */
+.input-field {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Buttons */
+.login-btn {
+  background: #0077b6 !important;
+  color: white !important;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.login-btn:hover {
+  background: #005f87 !important;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .login-box {
+      padding: 20px;
+  }
+}
