@@ -18,8 +18,8 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-region: us-east-1
-          role-to-assume: arn:aws:iam::819234464766:role/GitHubActionsRole
-          role-session-name: GitHubActionsDeploy
+          role-to-assume: arn:aws:iam::819234464766:role/Github-Demo
+          role-session-name: Github-Demo
 
       - name: Update kubeconfig
         run: |
