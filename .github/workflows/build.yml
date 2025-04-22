@@ -1,0 +1,39 @@
+name: Code Build Workflow
+
+on:
+    workflow_run:
+      workflows: 
+        - Sonar Code Review Workflow
+      types:
+        - completed
+        
+jobs:
+  build:
+    name: Build
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Docker build and push
+        run: |
+          docker build -t healthify-org .
+          docker tag healthify-org sark112/healthify-org:latest
+          docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
+          docker push sark112/healthify-org:latest
+        env:
+          DOCKER_CLI_ACI: 1
+
+
+      # - name: Pull the Docker image On AWS EC2 For tetsing of website
+      #   run: docker pull react-aws-eks-github-actions:latest
+      
+
+      - name: Stop and remove existing container
+        run: |
+            docker stop healthify-org || true
+            docker rm healthify-org || true
+  
+      - name: Run the container on AWS EC2 for testing now
+        run: docker run -d --name healthify-org -p 3000:3000 sark112/healthify-org:latest
+  
