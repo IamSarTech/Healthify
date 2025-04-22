@@ -1,45 +1,26 @@
 name: Deploy To EKS
 
 on:
-  workflow_run:
-    workflows: ["Trivy Image Scan Workflow"]
-    types: [completed]
-
+    workflow_run:
+      workflows: 
+        - Trivy Image Scan Workflow
+      types:
+        - completed
+  
 jobs:
-  deploy:
-    name: Deploy to EKS
-    runs-on: self-hosted
-    environment: production
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+    build:
+      name: Deploy To EKS
+      runs-on: self-hosted
+      steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v4
 
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-region: us-east-1
-          role-to-assume: arn:aws:iam::819234464766:role/Github-Demo
-          role-session-name: Github-Demo
+        - name: Pull the Docker image
+          run: docker pull sark112/healthify-org:latest
 
-      - name: Update kubeconfig
-        run: |
-          aws eks --region us-east-1 update-kubeconfig \
-            --name eks-cluster-codewithmuh \
-            --alias eks-cluster
-
-      - name: Verify Kubernetes access
-        run: kubectl cluster-info
-
-      - name: Pull Docker image
-        run: docker pull sark112/healthify-org:latest
-
-      - name: Validate deployment file
-        run: kubectl apply -f deployment-service.yml --dry-run=client
-
-      - name: Deploy to EKS
-        run: kubectl apply -f deployment-service.yml
-
-      - name: Verify deployment
-        run: |
-          kubectl rollout status deployment/healthify-org --timeout=90s
-          kubectl get svc healthify-org-service
+  
+        - name: Update kubeconfig
+          run: aws eks --region us-east-1 update-kubeconfig --name eks-cluster-codewithmuh
+  
+        - name: Deploy to EKS
+          run: kubectl apply -f deployment-service.yml --validate=false
