@@ -35,4 +35,4 @@ jobs:
             docker rm react-aws-eks-github-actions || true
   
       - name: Run the container on AWS EC2 for testing now
-        run: docker run -d --name react-aws-eks-github-actions -p 3000:3000 codewithmuh/react-aws-eks-github-actions:latest
+        run: docker run -d --name react-aws-eks-github-actions -p 3000:3000 sark112/react-aws-eks-github-actions:latest
