@@ -1,39 +1,27 @@
-name: Sonar Code Review
+name: Sonar Code Review Workflow
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   # schedule:
-  #   - cron: '34 0 * * 6'   # every Saturday 00:34 UTC
+  #     - cron: '34 0 * * 6'
 
 jobs:
-  sonar-scan:
+  build:
+    name: Build
     runs-on: self-hosted
     steps:
-      # 1. Checkout full repository history (needed for accurate analysis)
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v2
         with:
-          fetch-depth: 0
-
-      # 2. Ensure unzip (and zip) exist on the runner
-      - name: Install unzip
-        run: |
-          if ! command -v unzip >/dev/null; then
-            sudo apt-get update -y || sudo yum -y update
-            sudo apt-get install -y unzip zip || sudo yum install -y unzip zip
-          fi
-
-      # 3. SonarQube scan
-      - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@v2
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - uses: sonarsource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-
-      # 4. (Optional) Break the build if Quality Gate fails
-      # - name: SonarQube Quality Gate
-      #   uses: sonarsource/sonarqube-quality-gate-action@v1
+      # If you wish to fail your job when the Quality Gate is red, uncomment the
+      # following lines. This would typically be used to fail a deployment.
+      # - uses: sonarsource/sonarqube-quality-gate-action@master
+      #   timeout-minutes: 5
       #   env:
       #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      #   timeout-minutes: 5
