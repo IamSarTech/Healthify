@@ -1,11 +1,8 @@
 name: Trivy Image Scan Workflow
 
 on:
-    workflow_run:
-      workflows: 
-        - Code Build Workflow
-      types:
-        - completed
+  push:
+    branches: [ main ]
   
 jobs:
     build:
