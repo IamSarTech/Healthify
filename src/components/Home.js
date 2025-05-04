@@ -41,7 +41,7 @@ const Home = () => {
               <Button component={Link} to="/" sx={{ color: "white", fontWeight: "bold", fontSize: "18px" }}>Home</Button>
               <Button component={Link} to="/about" sx={{ color: "white", fontSize: "18px" }}>About Us</Button>
               <Button component={Link} to="/services" sx={{ color: "white", fontSize: "18px" }}>Services</Button>
-              <Button component={Link} to="/contact" sx={{ color: "white", fontSize: "18px" }}>Contact</Button>
+              
             </Box>
 
             {/* Right Section: Dashboard & Auth Buttons */}
